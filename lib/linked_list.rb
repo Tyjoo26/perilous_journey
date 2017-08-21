@@ -19,6 +19,14 @@ class LinkedList
     end
   end
 
+  def not_head_node
+    if node.next_node == nil
+
+    else node.next_node != nil
+
+    end
+  end
+
   def to_string
     "The #{@head.surname} Family"
   end

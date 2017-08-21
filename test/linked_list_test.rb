@@ -48,15 +48,16 @@ class LinkedListTest < MiniTest::Test
 
   def test_append_rhodes
     list = LinkedList.new
+    expected = list.append("Rhodes")
 
-    assert list.append("Rhodes")
+    assert_equal expected, list.append("Rhodes")
   end
 
   def test_node_added_to_head
     list = LinkedList.new
-    list.append("Rhodes")
+    expected = list.append("Rhodes")
 
-    assert_equal Node.new("Rhodes"), list.head
+    assert_equal expected, list.head
   end
 
   def test_next_node_is_nil
@@ -69,9 +70,9 @@ class LinkedListTest < MiniTest::Test
   def test_append_additional_nodes
     list = LinkedList.new
     list.append("Rhodes")
-    list.append("Hardy")
+    expected = list.append("Hardy")
 
-    assert_equal Node.new("Hardy"), list.head.next_node
+    assert_equal expected, list.head.next_node
   end
 
   def test_count_after_additional_nodes
@@ -82,12 +83,12 @@ class LinkedListTest < MiniTest::Test
     assert_equal 2, list.count
   end
 
-  def test_to_string_after_added_nodes
-    list = LinkedList.new
-    list.append("Rhodes")
-    list.append("Hardy")
-
-    assert_equal        , 
-  end
+  # def test_to_string_after_added_nodes
+  #   list = LinkedList.new
+  #   list.append("Rhodes")
+  #   list.append("Hardy")
+  #
+  #   assert_equal        ,
+  # end
 
 end
