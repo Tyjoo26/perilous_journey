@@ -141,6 +141,7 @@ class LinkedListTest < MiniTest::Test
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
+    list.prepend("McKinney")
     expected = list.insert(1, "Lawson")
 
     assert_equal "Lawson", expected.surname
@@ -150,6 +151,7 @@ class LinkedListTest < MiniTest::Test
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
+    list.prepend("McKinney")
     list.insert(1 , "Lawson")
     expected = "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family"
 
@@ -160,20 +162,67 @@ class LinkedListTest < MiniTest::Test
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
+    list.prepend("McKinney")
     list.insert(1 , "Lawson")
 
     assert_equal "The Brooks family", list.find(2, 1)
   end
 
-  # def test_find_method_1_3
-  #   list = LinkedList.new
-  #   list.append("Brooks")
-  #   list.append("Henderson")
-  #   list.insert(1 , "Lawson")
-  #   expected = "The Lawson family, followed by the Brooks family, followed by the Henderson family"
-  #
-  #   assert_equal expected, list.find(1, 3)
-  # end
+  def test_find_method_1_3
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+    expected = "The Lawson family, followed by the Brooks family, followed by the Henderson family"
+
+    assert_equal expected, list.find(1, 3)
+  end
+
+  def test_includes?
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+
+
+    assert  list.includes?("Brooks")
+  end
+
+  def test_includes_false
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+
+
+    refute  list.includes?("Chapman")
+  end
+
+  def test_pop
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+    expected = "The Henderson family has died of dysentery"
+
+    assert_equal expected, list.pop
+  end
+
+  def test_pop
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+    list.pop
+    expected = "The Brooks family has died of dysentery"
+
+    assert_equal expected, list.pop
+  end
 
 
 end

@@ -76,11 +76,42 @@ class LinkedList
       create_string(current, element)
   end
 
-  # def create_string(current, element)
-  #   string = ""
-  #   element.times do
-  #
-  # end
+  def create_string(current, element)
+    string = "The #{current.surname} family"
+    if element > 1
+      until element == 1
+        element -= 1
+        current = current.next_node
+        string << ", followed by the #{current.surname} family"
+      end
+    end
+    string
+  end
+
+  def includes?(argument)
+    current = @head
+    until @count == 0
+      @count -= 1
+      if current.surname == argument
+         return true
+      else
+        current = current.next_node
+         false
+      end
+    end
+  end
+
+  def pop
+    current = @head
+      until current.next_node.next_node.nil?
+        current = current.next_node
+      end
+      data = current.next_node.surname
+      current.next_node = nil
+      string = "The #{data} family has died of dysentery"
+
+    end
+
 
 
 
