@@ -69,29 +69,35 @@ class LinkedListTest < MiniTest::Test
     assert_nil     list.head.next_node
   end
 
-  def test_append_additional_nodes
+  def test_append_3_additional_nodes
     list = LinkedList.new
     list.append("Rhodes")
-    expected = list.append("Hardy")
+    list.append("Hardy")
+    list.append("Johnson")
 
-    assert_equal expected, list.head.next_node
-    assert_equal "Hardy", list.head.next_node.surname
+
+    assert_equal "Johnson", list.head.next_node.next_node.surname
+
   end
 
   def test_count_after_additional_nodes
     list = LinkedList.new
     list.append("Rhodes")
     list.append("Hardy")
+    list.append("Johnson")
 
-    assert_equal 2, list.count
+
+    assert_equal 3, list.count
   end
 
   def test_to_string_after_added_nodes
     list = LinkedList.new
     list.append("Rhodes")
     list.append("Hardy")
+    list.append("Johnson")
+    expected = "The Rhodes family, followed by the Hardy family, followed by the Johnson family"
 
-    assert_equal "The Rhodes family, followed by the Hardy family", list.to_string
+    assert_equal expected, list.to_string
   end
 
   def test_append_brooks
@@ -114,9 +120,9 @@ class LinkedListTest < MiniTest::Test
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
+    list.prepend("Johnson")
 
-
-    assert_equal "McKinney", list.head.surname
+    assert_equal "Johnson", list.head.surname
   end
 
   def test_prepend_to_string
@@ -124,8 +130,12 @@ class LinkedListTest < MiniTest::Test
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
+    list.prepend("Johnson")
+    list.append("Frank")
 
-    assert_equal "The McKinney family, followed by the Brooks family, followed by the Henderson family", list.to_string
+    expected = "The Johnson family, followed by the McKinney family, followed by the Brooks family, followed by the Henderson family, followed by the Frank family"
+
+    assert_equal expected, list.to_string
   end
 
   def test_count
@@ -133,8 +143,10 @@ class LinkedListTest < MiniTest::Test
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
+    list.prepend("Johnson")
+    list.append("Frank")
 
-    assert_equal 3, list.count
+    assert_equal 5, list.count
   end
 
   def test_insert
@@ -142,9 +154,11 @@ class LinkedListTest < MiniTest::Test
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
-    expected = list.insert(1, "Lawson")
+    list.insert(1, "Lawson")
+    list.insert(3, "Frank")
+    list.insert(4, "Jerry")
 
-    assert_equal "Lawson", expected.surname
+    assert_equal "Jerry", list.head.next_node.next_node.next_node.next_node.surname
   end
 
   def to_string_after_insert
@@ -153,7 +167,9 @@ class LinkedListTest < MiniTest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1 , "Lawson")
-    expected = "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Henderson family"
+    list.insert(3, "Frank")
+
+    expected = "The McKinney family, followed by the Lawson family, followed by the Brooks family, followed by the Frank family, followed by the Henderson family"
 
     assert_equal expected, list.to_string
   end
@@ -163,9 +179,23 @@ class LinkedListTest < MiniTest::Test
     list.append("Brooks")
     list.append("Henderson")
     list.prepend("McKinney")
-    list.insert(1 , "Lawson")
+    list.insert(1, "Lawson")
+    list.insert(3, "Frank")
+    list.insert(4, "Jerry")
 
-    assert_equal "The Brooks family", list.find(2, 1)
+
+    assert_equal "The Frank family, followed by the Jerry family, followed by the Henderson family", list.find(3, 3)
+  end
+
+  def test_find_method_1_4
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+    list.insert(3, "Frank")
+
+    assert_equal "The Lawson family, followed by the Brooks family, followed by the Frank family, followed by the Henderson family", list.find(1, 4)
   end
 
   def test_find_method_1_3
@@ -174,6 +204,7 @@ class LinkedListTest < MiniTest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1 , "Lawson")
+
     expected = "The Lawson family, followed by the Brooks family, followed by the Henderson family"
 
     assert_equal expected, list.find(1, 3)
@@ -185,9 +216,11 @@ class LinkedListTest < MiniTest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1 , "Lawson")
+    list.insert(3, "Frank")
+    list.insert(4, "Jerry")
 
 
-    assert  list.includes?("Brooks")
+    assert_equal true,  list.includes?("Brooks")
   end
 
   def test_includes_false
@@ -198,7 +231,7 @@ class LinkedListTest < MiniTest::Test
     list.insert(1 , "Lawson")
 
 
-    refute  list.includes?("Chapman")
+    assert_equal false,  list.includes?("Chapman")
   end
 
   def test_pop

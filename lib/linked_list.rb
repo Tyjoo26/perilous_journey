@@ -16,6 +16,9 @@ class LinkedList
     if @head == nil
       @head = Node.new(data)
     else
+      until current.next_node.nil?
+        current = current.next_node
+      end
       current.next_node = Node.new(data)
     end
   end
@@ -47,23 +50,16 @@ class LinkedList
       if @head.nil?
         @head = insert_node
       else
-        insertion(position,data)
+        count = 1
+        current = @head
+        until count == position
+          count += 1
+          current = current.next_node
+        end
+        @count += 1
+        insert_node.next_node = current.next_node
+        current.next_node = insert_node
       end
-  end
-
-  def insertion(position, data, count = 1, root = @head)
-    insert_node = Node.new(data)
-    if count != position
-      count += 1
-      current = root.next_node
-      insertion(position,data, count , current)
-    else
-      @count += 1
-      tail = @head
-      current = insert_node
-      current.next_node = tail.next_node
-      tail.next_node = insert_node
-    end
   end
 
   def find(position, element)
@@ -88,18 +84,18 @@ class LinkedList
     string
   end
 
-  def includes?(argument)
-    current = @head
-    until @count == 0
-      @count -= 1
-      if current.surname == argument
-         return true
+  def includes?(data)
+    current_node = @head
+    until current_node == nil
+      if current_node.surname == data
+        return true
       else
-        current = current.next_node
-         false
+        current_node = current_node.next_node
       end
     end
+    false
   end
+
 
   def pop
     current = @head
