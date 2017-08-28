@@ -121,8 +121,9 @@ class LinkedListTest < MiniTest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.prepend("Johnson")
+    list.prepend("Marcus")
 
-    assert_equal "Johnson", list.head.surname
+    assert_equal "Marcus", list.head.surname
   end
 
   def test_prepend_to_string
@@ -257,5 +258,20 @@ class LinkedListTest < MiniTest::Test
     assert_equal expected, list.pop
   end
 
+  def test_pop
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1, "Lawson")
+    list.insert(3, "Frank")
+    list.insert(4, "Jerry")
+    list.pop
+    list.pop
+
+    expected = "The Frank family has died of dysentery"
+
+    assert_equal expected, list.pop
+  end
 
 end

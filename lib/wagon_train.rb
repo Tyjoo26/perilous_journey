@@ -9,7 +9,7 @@ class WagonTrain
     @list = LinkedList.new
   end
 
-  def append(surname)
+  def append(surname, supplies)
     @list.append(surname)
   end
 

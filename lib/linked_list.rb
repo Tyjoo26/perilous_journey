@@ -105,7 +105,6 @@ class LinkedList
       data = current.next_node.surname
       current.next_node = nil
       string = "The #{data} family has died of dysentery"
-
     end
 
 
