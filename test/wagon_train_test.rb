@@ -20,23 +20,23 @@ class WagonTrainTest < MiniTest::Test
 
   def test_append_node
     wt = WagonTrain.new
-    wt.append("Burke")
+    wt.append("Burke",{"pounds of food" => 200})
 
     assert_equal "Burke", wt.list.head.surname
   end
 
   def test_append_another_node
     wt = WagonTrain.new
-    wt.list.append("Burke")
-    wt.list.append("West")
+    wt.list.append("Burke",{"pounds of food" => 200})
+    wt.list.append("West",{"pounds of food" => 200})
 
     assert_equal "West", wt.list.head.next_node.surname
   end
 
   def test_count_node
     wt = WagonTrain.new
-    wt.list.append("Burke")
-    wt.list.append("West")
+    wt.list.append("Burke",{"pounds of food" => 200})
+    wt.list.append("West",{"pounds of food" => 200})
 
     assert_equal 2, wt.list.count
   end
@@ -44,18 +44,12 @@ class WagonTrainTest < MiniTest::Test
   def test_append_node_supplies
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
-
+binding.pry
     assert_equal "Burke", wt.list.head.surname
     assert_equal 200, wt.list.head.supplies["pounds of food"]
 
   end
 
-  # def test_prepend_supplies
-  #   wt = WagonTrain.new
-  #   wt.append("Burke", {"pounds of food" => 200})
-  #   wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
-  #
-  #   assert_equal "spare wagon tongues", list.head.supplies[key]
-  # end
+
 
 end

@@ -3,7 +3,7 @@ require './lib/node'
 
 class WagonTrain
 
-  attr_reader :list
+  attr_reader :list, :supplies
 
   def initialize
     @list = LinkedList.new

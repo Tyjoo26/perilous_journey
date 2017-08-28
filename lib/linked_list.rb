@@ -10,16 +10,16 @@ class LinkedList
     @count = 0
   end
 
-  def append(data)
+  def append(data,supplies = {})
     current = @head
     @count += 1
     if @head == nil
-      @head = Node.new(data)
+      @head = Node.new(data, supplies)
     else
       until current.next_node.nil?
         current = current.next_node
       end
-      current.next_node = Node.new(data)
+      current.next_node = Node.new(data, supplies)
     end
   end
 
@@ -47,19 +47,19 @@ class LinkedList
     string
   end
 
-  def prepend(data)
+  def prepend(data, supplies = {})
     @count += 1
     if @head.nil?
-        @head = Node.new(data)
+        @head = Node.new(data,supplies)
     else
       old_head = @head
-      @head = Node.new(data)
+      @head = Node.new(data,supplies)
       @head.next_node = old_head
     end
   end
 
-  def insert(position, data)
-    insert_node = Node.new(data)
+  def insert(position, data, supplies = {})
+    insert_node = Node.new(data,supplies)
       if @head.nil?
         @head = insert_node
       else
