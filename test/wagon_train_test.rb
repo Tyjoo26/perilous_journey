@@ -41,11 +41,13 @@ class WagonTrainTest < MiniTest::Test
     assert_equal 2, wt.list.count
   end
 
-  def test_append_node_supples
+  def test_append_node_supplies
     wt = WagonTrain.new
-    expected = wt.append("Burke", {"pounds of food" => 200})
+    wt.append("Burke", {"pounds of food" => 200})
 
-    assert_equal "Burke", wt.head.surname
+    assert_equal "Burke", wt.list.head.surname
+    assert_equal 200, wt.list.head.supplies["pounds of food"]
+
   end
 
   # def test_prepend_supplies

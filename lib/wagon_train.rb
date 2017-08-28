@@ -10,7 +10,7 @@ class WagonTrain
   end
 
   def append(surname, supplies)
-    @list.append(surname)
+    @list.append(surname, supplies)
   end
 
 

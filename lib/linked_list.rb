@@ -34,6 +34,19 @@ class LinkedList
       string
   end
 
+  def create_string(current, element)
+    current = @head
+    string = "The #{current.surname} family"
+    if element > 1
+      until element == 1
+        element -= 1
+        current = current.next_node
+        string << ", followed by the #{current.surname} family"
+      end
+    end
+    string
+  end
+
   def prepend(data)
     @count += 1
     if @head.nil?
@@ -72,17 +85,7 @@ class LinkedList
       create_string(current, element)
   end
 
-  def create_string(current, element)
-    string = "The #{current.surname} family"
-    if element > 1
-      until element == 1
-        element -= 1
-        current = current.next_node
-        string << ", followed by the #{current.surname} family"
-      end
-    end
-    string
-  end
+
 
   def includes?(data)
     current_node = @head

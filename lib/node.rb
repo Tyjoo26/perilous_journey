@@ -3,7 +3,7 @@ require 'pry'
 class Node
 
   attr_reader :surname
-  attr_accessor :next_node
+  attr_accessor :next_node, :supplies
 
   def initialize(surname)
     @surname = surname
