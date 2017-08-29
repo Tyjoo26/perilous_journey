@@ -10,16 +10,16 @@ class LinkedList
     @count = 0
   end
 
-  def append(data)
+  def append(data, supplies = nil)
     current = @head
     @count += 1
     if @head == nil
-      @head = Node.new(data)
+      @head = Node.new(data, supplies)
     else
       until current.next_node.nil?
         current = current.next_node
       end
-      current.next_node = Node.new(data)
+      current.next_node = Node.new(data, supplies)
     end
   end
 
@@ -35,7 +35,6 @@ class LinkedList
   end
 
   def create_string(current, element)
-    current = @head
     string = "The #{current.surname} family"
     if element > 1
       until element == 1
@@ -47,26 +46,26 @@ class LinkedList
     string
   end
 
-  def prepend(data)
+  def prepend(data, supplies = nil)
     @count += 1
     if @head.nil?
-        @head = Node.new(data)
+        @head = Node.new(data, supplies)
     else
       old_head = @head
-      @head = Node.new(data)
+      @head = Node.new(data, supplies)
       @head.next_node = old_head
     end
   end
 
-  def insert(position, data)
-    insert_node = Node.new(data)
+  def insert(position, data, supplies = nil)
+    insert_node = Node.new(data, supplies)
       if @head.nil?
         @head = insert_node
       else
-        count = 1
+        node_count = 1
         current = @head
-        until count == position
-          count += 1
+        until node_count == position
+          node_count += 1
           current = current.next_node
         end
         @count += 1
@@ -76,10 +75,10 @@ class LinkedList
   end
 
   def find(position, element)
-    count = 0
+    find_count = 0
     current = @head
-      until count == position
-        count += 1
+      until find_count == position
+        find_count += 1
         current = current.next_node
       end
       create_string(current, element)
@@ -111,6 +110,15 @@ class LinkedList
     end
 
 
+
+    def tail
+      current = @head
+        until current.next_node.nil?
+          current = current.next_node
+        end
+        current.next_node = @head
+        current
+      end
 
 
 end

@@ -274,4 +274,49 @@ class LinkedListTest < MiniTest::Test
     assert_equal expected, list.pop
   end
 
+  def test_tail_surname
+    list = LinkedList.new
+    list.append("McKinney")
+    list.append("Henderson")
+    list.append("Frank")
+
+
+
+    expected = "Frank"
+
+    assert_equal expected, list.tail.surname
+  end
+
+  def test_tail_next_node_is_head
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1, "Frank")
+
+
+
+    actual = list.tail.next_node
+    expected = list.head
+
+    assert_equal expected, actual
+  end
+
+  def test_tail_next_node_is_head_with_insert_and_find
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    list.insert(1 , "Lawson")
+    list.insert(3, "Frank")
+    list.insert(4, "Jerry")
+
+    actual = list.tail.next_node
+    expected = list.head
+
+    assert_equal expected, actual
+  end
+
+
+
 end
