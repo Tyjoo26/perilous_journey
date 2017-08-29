@@ -35,7 +35,6 @@ class LinkedList
   end
 
   def create_string(current, element)
-    current = @head
     string = "The #{current.surname} family"
     if element > 1
       until element == 1
