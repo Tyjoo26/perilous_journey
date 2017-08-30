@@ -12,36 +12,32 @@ class LinkedList
 
   def append(data, supplies = nil)
     current = @head
-    @count += 1
+    @count +=1
     if @head == nil
       @head = Node.new(data, supplies)
     else
-      until current.next_node.nil?
-        current = current.next_node
-      end
-      current.next_node = Node.new(data, supplies)
+      append_until_loop(current,data,supplies)
     end
+  end
+
+  def append_until_loop(current, data, supplies)
+    until current.next_node.nil?
+      current = current.next_node
+    end
+    current.next_node = Node.new(data, supplies)
   end
 
   def to_string
     current = @head
     string = ""
     string << "The #{current.surname} family"
-      while current.next_node != nil
-        current = current.next_node
-        string << ", followed by the #{current.surname} family"
-      end
-      string
+    loop_for_string_method(current,string)
   end
 
-  def create_string(current, element)
-    string = "The #{current.surname} family"
-    if element > 1
-      until element == 1
-        element -= 1
-        current = current.next_node
-        string << ", followed by the #{current.surname} family"
-      end
+  def loop_for_string_method(current,string)
+    while current.next_node != nil
+      current = current.next_node
+      string << ", followed by the #{current.surname} family"
     end
     string
   end
@@ -58,33 +54,54 @@ class LinkedList
   end
 
   def insert(position, data, supplies = nil)
-    insert_node = Node.new(data, supplies)
-      if @head.nil?
-        @head = insert_node
-      else
-        node_count = 1
-        current = @head
-        until node_count == position
-          node_count += 1
-          current = current.next_node
-        end
-        @count += 1
-        insert_node.next_node = current.next_node
-        current.next_node = insert_node
+  return this_doesnt_exist if position > @count
+  insert_node = Node.new(data, supplies)
+    if @head.nil?
+      @head = insert_node
+    else
+      node_count = 1
+      current = @head
+      until node_count == position
+        node_count += 1
+        current = current.next_node
       end
+      @count += 1
+      insert_node.next_node = current.next_node
+      current.next_node = insert_node
+    end
+  end
+
+
+  def this_doesnt_exist
+    "You can't do this"
   end
 
   def find(position, element)
-    find_count = 0
+    return this_doesnt_exist if position > @count
+    node_count = 0
     current = @head
-      until find_count == position
-        find_count += 1
-        current = current.next_node
-      end
-      create_string(current, element)
+    traverse_through_list_for_find(node_count, current, position, element)
   end
 
+  def traverse_through_list_for_find(node_count, current, position, element)
+    until node_count == position
+      node_count += 1
+      current = current.next_node
+    end
+    create_string(current, element)
+  end
 
+  def create_string(current, element)
+    string = "The #{current.surname} family"
+    if element > 1
+      until element == 1
+        element -= 1
+        current = current.next_node
+        string << ", followed by the #{current.surname} family"
+      end
+    end
+    string
+  end
 
   def includes?(data)
     current_node = @head
@@ -104,21 +121,22 @@ class LinkedList
       until current.next_node.next_node.nil?
         current = current.next_node
       end
-      data = current.next_node.surname
-      current.next_node = nil
-      string = "The #{data} family has died of dysentery"
+    data = current.next_node.surname
+    current.next_node = nil
+    string = "The #{data} family has died of dysentery"
     end
 
 
 
-    def tail
-      current = @head
-        until current.next_node.nil?
-          current = current.next_node
-        end
-        current.next_node = @head
-        current
+  def tail
+    current = @head
+      until current.next_node.nil? || current.next_node == @head
+        current = current.next_node
       end
+      current.next_node = @head
+      current
+    end
+
 
 
 end
