@@ -44,12 +44,18 @@ class WagonTrainTest < MiniTest::Test
   def test_append_node_supplies
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
-binding.pry
+
     assert_equal "Burke", wt.list.head.surname
     assert_equal 200, wt.list.head.supplies["pounds of food"]
 
   end
 
+  def test_wagon_has_supplies
+    wt = WagonTrain.new
+    wt.append("Burke", {"pounds of food" => 200})
+    wt.append("")
 
-
+    assert_equal ({"pounds of food" => 200}), wt.supplies
+    assert_equal
+  end
 end

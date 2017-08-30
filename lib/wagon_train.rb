@@ -1,5 +1,6 @@
 require './lib/linked_list'
 require './lib/node'
+require 'pry'
 
 class WagonTrain
 
@@ -13,15 +14,26 @@ class WagonTrain
     @list.append(surname, supplies)
   end
 
+  def supplies
+    current = list.head
+    until current.next_node.nil?
+      current = current.next_node
+
+    end
+    p current.supplies
+  end
+
   def go_hunting
     a = ["squirrel", "deer", "bison"]
-    random = rand(4)
-    output = "You got #{random} #{a.sample}, #{random} #{a.sample}, and #{random} #{a.sample}"
-      # if output.include?("squirrel" && )
-      #  output.gsub("squirrel", "squirrels")
-    #  else
-    #    output
-    #   end
-    # end
 
+    output1 = "You got #{rand(5)} #{a.sample},"
+    output2 = " #{rand(5)} #{a.sample}"
+    output3 = " and #{rand(5)} #{a.sample}"
+    output = output1 + output2 +output3
+      if output.include?("s" && "2" || "3")
+       output.gsub("squirrel", "squirrels")
+     else
+       output
+      end
+    end
   end
