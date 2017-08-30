@@ -5,10 +5,6 @@ require 'pry'
 class WagonTrain
 
   attr_reader :list, :supplies
-<<<<<<< HEAD
-
-=======
->>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
 
   def initialize
     @list = LinkedList.new
@@ -22,7 +18,6 @@ class WagonTrain
     current = list.head
     until current.next_node.nil?
       current = current.next_node
-
     end
     p current.supplies
   end
