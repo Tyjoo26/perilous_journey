@@ -54,30 +54,33 @@ class LinkedList
   end
 
   def insert(position, data, supplies = nil)
-  return this_doesnt_exist if position > @count
-  insert_node = Node.new(data, supplies)
+    return this_doesnt_exist if position > @count
     if @head.nil?
       @head = insert_node
     else
       node_count = 1
       current = @head
-      until node_count == position
-        node_count += 1
-        current = current.next_node
-      end
-      @count += 1
-      insert_node.next_node = current.next_node
-      current.next_node = insert_node
+      find_position_for_insert(position, node_count, current, data, supplies = nil)
     end
   end
 
+  def find_position_for_insert(position, node_count, current, data, supplies = nil)
+  insert_node = Node.new(data, supplies)
+    until node_count == position
+      node_count += 1
+      current = current.next_node
+    end
+    @count += 1
+    insert_node.next_node = current.next_node
+    current.next_node = insert_node
+  end
 
   def this_doesnt_exist
     "You can't do this"
   end
 
   def find(position, element)
-    return this_doesnt_exist if position > @count
+    return this_doesnt_exist if position > @count || element > count
     node_count = 0
     current = @head
     traverse_through_list_for_find(node_count, current, position, element)
@@ -105,6 +108,10 @@ class LinkedList
 
   def includes?(data)
     current_node = @head
+    traverse_through_list_for_includes?(data, current_node)
+  end
+
+  def traverse_through_list_for_includes?(data, current_node)
     until current_node == nil
       if current_node.surname == data
         return true
@@ -115,7 +122,6 @@ class LinkedList
     false
   end
 
-
   def pop
     current = @head
       until current.next_node.next_node.nil?
@@ -124,9 +130,7 @@ class LinkedList
     data = current.next_node.surname
     current.next_node = nil
     string = "The #{data} family has died of dysentery"
-    end
-
-
+  end
 
   def tail
     current = @head
@@ -135,8 +139,6 @@ class LinkedList
       end
       current.next_node = @head
       current
-    end
-
-
+  end
 
 end
