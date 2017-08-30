@@ -10,13 +10,24 @@ class LinkedList
     @count = 0
   end
 
+<<<<<<< HEAD
   def append(data, supplies = nil)
+=======
+  def append(data,supplies = {})
+>>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
     current = @head
     @count +=1
     if @head == nil
       @head = Node.new(data, supplies)
     else
+<<<<<<< HEAD
       append_until_loop(current,data,supplies)
+=======
+      until current.next_node.nil?
+        current = current.next_node
+      end
+      current.next_node = Node.new(data, supplies)
+>>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
     end
   end
 
@@ -34,14 +45,26 @@ class LinkedList
     loop_for_string_method(current,string)
   end
 
+<<<<<<< HEAD
   def loop_for_string_method(current,string)
     while current.next_node != nil
       current = current.next_node
       string << ", followed by the #{current.surname} family"
+=======
+  def create_string(current, element)
+    string = "The #{current.surname} family"
+    if element > 1
+      until element == 1
+        element -= 1
+        current = current.next_node
+        string << ", followed by the #{current.surname} family"
+      end
+>>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
     end
     string
   end
 
+<<<<<<< HEAD
   def prepend(data, supplies = nil)
     @count += 1
     if @head.nil?
@@ -49,10 +72,20 @@ class LinkedList
     else
       old_head = @head
       @head = Node.new(data, supplies)
+=======
+  def prepend(data, supplies = {})
+    @count += 1
+    if @head.nil?
+        @head = Node.new(data,supplies)
+    else
+      old_head = @head
+      @head = Node.new(data,supplies)
+>>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
       @head.next_node = old_head
     end
   end
 
+<<<<<<< HEAD
   def insert(position, data, supplies = nil)
     return this_doesnt_exist if position > @count
     if @head.nil?
@@ -77,6 +110,23 @@ class LinkedList
 
   def this_doesnt_exist
     "You can't do this"
+=======
+  def insert(position, data, supplies = {})
+    insert_node = Node.new(data,supplies)
+      if @head.nil?
+        @head = insert_node
+      else
+        count = 1
+        current = @head
+        until count == position
+          count += 1
+          current = current.next_node
+        end
+        @count += 1
+        insert_node.next_node = current.next_node
+        current.next_node = insert_node
+      end
+>>>>>>> 589d7596f50a0542319fc5ab9fe9cc552aba4fdd
   end
 
   def find(position, element)
