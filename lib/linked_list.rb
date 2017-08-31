@@ -163,6 +163,7 @@ class LinkedList
       until current.next_node.next_node.nil?
         current = current.next_node
       end
+    @count -= 1  
     data = current.next_node.surname
     current.next_node = nil
     string = "The #{data} family has died of dysentery"
