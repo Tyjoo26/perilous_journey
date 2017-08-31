@@ -21,7 +21,7 @@ class LinkedList
   end
 
   def append_until_loop(current, data, supplies)
-    until current.next_node.nil? || current.next_node == @head
+    until current.next_node.nil?
       current = current.next_node
     end
     current.next_node = Node.new(data, supplies)
@@ -55,7 +55,7 @@ class LinkedList
   end
 
 
-  def prepend(data, supplies = nil)
+  def prepend(data, supplies = {})
     @count += 1
     if @head.nil?
         @head = Node.new(data,supplies)
@@ -73,11 +73,11 @@ class LinkedList
     else
       node_count = 1
       current = @head
-      find_position_for_insert(position, node_count, current, data, supplies)
+      find_position_for_insert(position, node_count, current, data, supplies = nil)
     end
   end
 
-  def find_position_for_insert(position, node_count, current, data, supplies)
+  def find_position_for_insert(position, node_count, current, data, supplies = nil)
     insert_node = Node.new(data, supplies)
     until node_count == position
       node_count += 1
@@ -99,11 +99,11 @@ class LinkedList
    else
      node_count = 1
      current = @head
-     find_position_for_insert(position, node_count, current, data, supplies )
+     find_position_for_insert(position, node_count, current, data, supplies = nil)
    end
  end
 
- def find_position_for_insert(position, node_count, current, data, supplies )
+ def find_position_for_insert(position, node_count, current, data, supplies = nil)
  insert_node = Node.new(data, supplies)
    until node_count == position
      node_count += 1
@@ -135,7 +135,7 @@ class LinkedList
     if element > 1
       until element == 1
         element -= 1
-        current = current.next_node
+        current = current.next_node || current = tail.next_node
         string << ", followed by the #{current.surname} family"
       end
     end
@@ -148,7 +148,7 @@ class LinkedList
   end
 
   def traverse_through_list_for_includes?(data, current_node)
-    until current_node == nil || current_node == @head
+    until current_node == nil
       if current_node.surname == data
         return true
       else
@@ -160,10 +160,9 @@ class LinkedList
 
   def pop
     current = @head
-      until current.next_node.next_node.nil? || current.next.node == @head
+      until current.next_node.next_node.nil?
         current = current.next_node
       end
-    @count -= 1
     data = current.next_node.surname
     current.next_node = nil
     string = "The #{data} family has died of dysentery"
