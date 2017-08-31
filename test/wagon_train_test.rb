@@ -59,7 +59,7 @@ class WagonTrainTest < MiniTest::Test
   end
 
   def test_insert_supplies
-    skip
+
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
     wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
@@ -69,7 +69,7 @@ class WagonTrainTest < MiniTest::Test
   end
 
   def test_insert_additional_supplies
-    skip
+
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
     wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
@@ -90,7 +90,7 @@ class WagonTrainTest < MiniTest::Test
   end
 
   def test_list_supplies
-    skip
+
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
     wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
@@ -104,7 +104,7 @@ class WagonTrainTest < MiniTest::Test
   def test_supplies_takes_hunt
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
-
+binding.pry
     assert_equal ({"pounds of food" => 200}), wt.supplies
   end
 end

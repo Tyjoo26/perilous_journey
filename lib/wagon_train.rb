@@ -20,7 +20,7 @@ class WagonTrain
     supply = supply.merge(current.supplies)
     until current.next_node.nil?
       current = current.next_node
-      supply = supply.merge(current.supplies)
+      supply = supply.merge!(current.supplies){|key, old, new| old + new}
     end
     p supply
   end
@@ -46,5 +46,9 @@ class WagonTrain
       @list.head.supplies.merge!(result) {|key, old, new| old + new}
 
       result
+      end
+
+      def count
+        @list.count
       end
 end
