@@ -2,6 +2,10 @@ require './lib/linked_list'
 require './lib/node'
 require 'pry'
 
+require './lib/linked_list'
+require './lib/node'
+require 'pry'
+
 class WagonTrain
 
   attr_reader :list, :supplies
@@ -35,18 +39,20 @@ class WagonTrain
         hunting_food += animal_key[animal]
         animal_counts[animal] += 1
       end
-        if animal_counts["squirrel"] == 1 || 0
-          print "You got #{animal_counts["squirrel"]} squirrel, #{animal_counts["deer"]} deer, and #{animal_counts["bison"]} bison for a total of #{hunting_food} pounds of food"
-          else
-            print "You got #{animal_counts["squirrel"]} squirrels, #{animal_counts["deer"]} deer, and #{animal_counts["bison"]} bison for a total of #{hunting_food} pounds of food"
-        end
+
+      if animal_counts["squirrel"] == 1 || 0
+        print "You got #{animal_counts["squirrel"]} squirrel, #{animal_counts["deer"]} deer, and #{animal_counts["bison"]} bison for a total of #{hunting_food} pounds of food"
+      else
+        print "You got #{animal_counts["squirrel"]} squirrels, #{animal_counts["deer"]} deer, and #{animal_counts["bison"]} bison for a total of #{hunting_food} pounds of food"
+      end
 
       result = { "pounds of food" => hunting_food}
       @list.head.supplies.merge!(result) {|key, v1, v2| v1 + v2}
 
       result
-  end
+      end
 end
+
   # def go_hunting
   #   a = ["squirrel", "bison", "deer"]
   #   input = rand(5)
