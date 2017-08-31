@@ -81,6 +81,7 @@ class LinkedListTest < MiniTest::Test
   end
 
   def test_count_after_additional_nodes
+
     list = LinkedList.new
     list.append("Rhodes")
     list.append("Hardy")
@@ -205,11 +206,12 @@ class LinkedListTest < MiniTest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1 , "Lawson")
-
+    
     expected = "The Lawson family, followed by the Brooks family, followed by the Henderson family"
 
     assert_equal expected, list.find(1, 3)
   end
+
 
   def test_includes?
     list = LinkedList.new
