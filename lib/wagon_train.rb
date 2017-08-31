@@ -43,7 +43,7 @@ class WagonTrain
       end
 
       result = { "pounds of food" => hunting_food}
-      @list.head.supplies.merge!(result) {|key, v1, v2| v1 + v2}
+      @list.head.supplies.merge!(result) {|key, old, new| old + new}
 
       result
       end
