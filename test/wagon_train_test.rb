@@ -39,7 +39,7 @@ class WagonTrainTest < MiniTest::Test
     wt.list.append("Burke",{"pounds of food" => 200})
     wt.list.append("West",{"pounds of food" => 200})
 
-    assert_equal 2, wt.list.count
+    assert_equal 2, wt.count
   end
 
   def test_append_node_supplies
@@ -59,7 +59,10 @@ class WagonTrainTest < MiniTest::Test
   end
 
   def test_insert_supplies
+<<<<<<< HEAD
 
+=======
+>>>>>>> c8377a7c48c3cfaa09a591687fd219af86ff8669
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
     wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
@@ -86,7 +89,7 @@ class WagonTrainTest < MiniTest::Test
     wt.list.insert(1, "West", {"pounds of food" => 300})
     wt.list.insert(3, "Frank", {"spare wagon tongues" => 5})
 
-    assert_equal 4, wt.list.count
+    assert_equal 4, wt.count
   end
 
   def test_list_supplies
@@ -94,9 +97,8 @@ class WagonTrainTest < MiniTest::Test
     wt = WagonTrain.new
     wt.append("Burke", {"pounds of food" => 200})
     wt.list.prepend("Hardy", {"spare wagon tongues" => 3})
-    wt.list.insert(1, "West", {"pound of food" => 300})
 
-    expected = {"spare wagon tongues" => 3,"pounds of food" => 300,"pound of food" => 200}
+    expected = {"spare wagon tongues" => 3,"pounds of food" => 200}
 
     assert_equal expected, wt.supplies
   end

@@ -10,20 +10,25 @@ class WagonTrain
     @list = LinkedList.new
   end
 
-  def append(surname, supplies)
+  def append(surname, supplies = nil)
     @list.append(surname, supplies)
+  end
+
+  def count
+    @list.count
   end
 
   def supplies
     supply = {}
     current = list.head
     supply = supply.merge(current.supplies)
-    until current.next_node.nil?
+    until current.next_node.nil? || current.next_node == list.head
       current = current.next_node
       supply = supply.merge!(current.supplies){|key, old, new| old + new}
     end
     p supply
   end
+
   def go_hunting
       animal_counts = {"squirrel" => 0, "deer" => 0, "bison" => 0 }
       animal_key = {"squirrel" => 2, "deer" => 40, "bison" => 100}
