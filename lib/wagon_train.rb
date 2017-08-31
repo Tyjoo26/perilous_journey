@@ -2,10 +2,6 @@ require './lib/linked_list'
 require './lib/node'
 require 'pry'
 
-require './lib/linked_list'
-require './lib/node'
-require 'pry'
-
 class WagonTrain
 
   attr_reader :list, :supplies
