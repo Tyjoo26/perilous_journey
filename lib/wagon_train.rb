@@ -52,22 +52,3 @@ class WagonTrain
       result
       end
 end
-
-  # def go_hunting
-  #   a = ["squirrel", "bison", "deer"]
-  #   input = rand(5)
-  #   input2 = rand(5) - input
-  #   input3 = input - input2
-  #
-  #
-  #   output1 = "You got #{input} #{a.sample},"
-  #   output2 = " #{input2.to_i} #{a.sample}"
-  #   output3 = " and #{input3.to_i} #{a.sample}"
-  #   output = output1 + output2 +output3
-  #     if output.include?("s" && "2" || "3")
-  #      output.gsub("squirrel", "squirrels")
-  #    else
-  #      output
-  #     end
-  #   end
-  # end
