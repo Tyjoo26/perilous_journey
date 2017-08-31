@@ -148,7 +148,7 @@ class LinkedList
   end
 
   def traverse_through_list_for_includes?(data, current_node)
-    until current_node == nil
+    until current_node == nil || current_node == @head
       if current_node.surname == data
         return true
       else
@@ -160,7 +160,7 @@ class LinkedList
 
   def pop
     current = @head
-      until current.next_node.next_node.nil?
+      until current.next_node.next_node.nil? || current.next.node == @head
         current = current.next_node
       end
     @count -= 1
